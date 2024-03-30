@@ -1,0 +1,65 @@
+{% extends 'main/header_and_footer.html' %}
+{% load static %}
+{% block title %}Pythoninmymind - сайт о программировании на Python{% endblock %}
+{% block description %}🐍 Полезные статьи, советы и гайды - все на сайте Pythoninmymind{% endblock %}
+
+{% block main %}
+<main class="container py-4">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis gradient" style="background: linear-gradient(to bottom right, black, #0d6efd);">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">Сайт о программировании на Python</h1>
+            <p class="lead my-3">Статьи для программистов любого уровня</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 order-lg-first order-last">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">Читайте</h3>
+            {% if articles %}
+                {% for article in articles %}
+                    <div class="pb-3">
+                        <div class="card">
+                            <div class="card-header"> 
+                                <h1>{{ article.title }}</h1>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {{ article.description }}
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ article.get_absolute_url }}" class="btn btn-primary" role="button">Читать</a>
+                                    </div>
+                                    <div class="col d-flex justify-content-end">
+                                        <p class="mb-0">{{ article.date_created }}</p>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="text-center mb-3">
+                <a href="{% url 'all_articles' %}" class="fs-4 btn btn-primary" role="button">Все статьи</a>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="position-sticky" style="top: 2rem">
+                <!-- Yandex.RTB R-A-7239096-1 -->
+                <div id="yandex_rtb_R-A-7239096-1"></div>
+                <script>
+                window.yaContextCb.push(()=>{
+                	Ya.Context.AdvManager.render({
+                		"blockId": "R-A-7239096-1",
+                		"renderTo": "yandex_rtb_R-A-7239096-1"
+                	})
+                })
+                </script>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
