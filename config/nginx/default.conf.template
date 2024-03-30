@@ -1,0 +1,23 @@
+# входной поток для uWSGI
+upstream uwsgi_app {
+    server unix:/pythoninmymind/pythoninmymind/uwsgi_app.sock;
+}
+
+server {
+    listen 80;
+    server_name www.pythoninmymind.ru pythoninmymind.ru;
+    error_log stderr warn;
+    access_log /dev/stdout main;
+    location / {
+        include /etc/nginx/uwsgi_params;
+        uwsgi_pass uwsgi_app;
+    }
+    
+    location /static {
+        alias /pythoninmymind/pythoninmymind/static;
+    }
+
+    location /media {
+        alias /pythoninmymind/pythoninmymind/media;
+    }
+}
