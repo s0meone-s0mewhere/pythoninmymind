@@ -1,17 +1,23 @@
-{% extends 'main/header_and_footer.html' %}
-{% load static %}
-{% load main_extras %}
-{% block title %}
-    {% if query %}
-        Поиск по запросу {{ query }}
-    {% else %}
-        Поиск
-    {% endif %}
-{% endblock %}
-{% block description %}Поиск на сайте pythoninmymind{% endblock %}
-
+{% extends 'main/header_and_footer.html' %} 
+{% load static %} 
+{% load main_extras %} 
+{% block title %} 
+    {% if query %} 
+        Поиск по запросу {{ query }} 
+    {% else %} 
+        Поиск 
+    {% endif %} 
+{% endblock %} 
+{% block description_tag %}🐍 Поиск на сайте Pythoninmymind {% endblock %} 
 {% block main %}
 <main class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb overflow-auto">
+            <li class="breadcrumb-item">
+                <a href="{% url 'main' %}">Главня</a>
+                <li class="breadcrumb-item active" aria-current="page">поиск</li>
+        </ol>
+    </nav>
     <div class="row">
         <div class="col-md-8 order-md-first order-last">
             <h1>Поиск</h1>
@@ -23,39 +29,39 @@
                 <input type="submit" value="Искать">
             </form>
             {% if query %}
-                <h3>
-                    {% with results.count as total_results %}
-                        Найдено результатов: {{ total_results }}
-                    {% endwith %}
-                </h3>
-                {% if results.count %}
+            <h3>
+                {% with results.count as total_results %}
+                    Найдено результатов: {{ total_results }} 
+                {% endwith %}
+            </h3>
+            {% if results.count %}
                 <h1 class="mb-3">Посты, содержащие запрос: "{{ query }}"</h1>
-                {% endif %}
-                {% for article in results %}
-                    <div class="pb-3">
-                        <div class="card">
-                            <div class="card-header"> 
-                                <h1>{{ article.title }}</h1>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{ article.description }}
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col">
+            {% endif %} 
+            {% for article in results %}
+            <div class="pb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>{{ article.title }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{ article.description }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
                                         <a href="{{ article.get_absolute_url }}" class="btn btn-primary" role="button">Читать</a>
-                                    </div>
-                                    <div class="col d-flex justify-content-end">
-                                        <p class="mb-0">{{ article.date_created }}</p>
-                                    </div>
-                                </div>                                
+                            </div>
+                            <div class="col d-flex justify-content-end">
+                                <p class="mb-0">{{ article.date_created }}</p>
                             </div>
                         </div>
                     </div>
-                {% empty %}
-                    <p>Результатов по вашему запросу нет</p>
+                </div>
+            </div>
+            {% empty %}
+            <p>Результатов по вашему запросу нет</p>
                 {% endfor %}
             {% endif %}
         </div>
@@ -65,7 +71,7 @@
                 <div id="yandex_rtb_R-A-7239096-1"></div>
                 <script>
                 window.yaContextCb.push(()=>{
-                	Ya.Context.AdvManager.render({
+                        Ya.Context.AdvManager.render({
                 		"blockId": "R-A-7239096-1",
                 		"renderTo": "yandex_rtb_R-A-7239096-1"
                 	})
