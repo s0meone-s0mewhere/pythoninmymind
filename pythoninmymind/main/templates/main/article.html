@@ -1,17 +1,20 @@
 {% extends 'main/header_and_footer.html' %}
 {% load static %}
 {% load main_extras %}
-{% block title %} 
-    {% if article.title %}
-        {{ article.title }}
-    {% endif %}
-{% endblock %}
-{% block description %} {% endblock %}
+{% block title %}{% if article.title %}{{ article.title }}{% endif %}{% endblock %}
+{% block description_tag %}{% if article.description %}{{ article.description }}{% endif %}{% endblock %}
 {% block head %} 
     <link href="{% static 'main/prism.css' %}" rel="stylesheet"/>
 {% endblock %}
 {% block main %}
 <div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb overflow-auto">
+          <li class="breadcrumb-item"><a href="{% url 'main' %}">Главня</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'all_articles' %}">Все статьи</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{% if article.title %}{{ article.title }}{% endif %}</li>
+        </ol>
+    </nav>
     <div class="text-cnter">
         <h1 class="text-center">{{ article.title }}</h1>
     </div>
