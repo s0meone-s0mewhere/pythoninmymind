@@ -18,25 +18,9 @@
     <div class="text-cnter">
         <h1 class="text-center">{{ article.title }}</h1>
     </div>
-    <div class="row">
-        <div class="col-lg-8 order-lg-first order-last">
-            <div class="fs-5">
-                <p>{{ article.content|render_markdown }}</p>
-            </div>
-        </div>
-        <div class="col-lg-4 ">
-            <div class="position-sticky mt-4" style="top: 2rem">
-                <!-- Yandex.RTB R-A-7239096-1 -->
-                <div id="yandex_rtb_R-A-7239096-1"></div>
-                <script>
-                window.yaContextCb.push(()=>{
-                	Ya.Context.AdvManager.render({
-                		"blockId": "R-A-7239096-1",
-                		"renderTo": "yandex_rtb_R-A-7239096-1"
-                	})
-                })
-                </script>
-            </div>
+    <div class="container">
+        <div class="fs-5">
+            <p>{{ article.content|render_markdown }}</p>
         </div>
     </div>
     <hr>

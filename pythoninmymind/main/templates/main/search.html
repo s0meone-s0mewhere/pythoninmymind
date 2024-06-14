@@ -18,67 +18,51 @@
                 <li class="breadcrumb-item active" aria-current="page">поиск</li>
         </ol>
     </nav>
-    <div class="row">
-        <div class="col-md-8 order-md-first order-last">
-            <h1>Поиск</h1>
-            <form method="get" class="mb-3">
-                <p>
-                    <label for="id_query">Запрос:</label>
-                    <input type="text" name="query" required="" id="id_query">
-                </p>
-                <input type="submit" value="Искать">
-            </form>
-            {% if query %}
-            <h3>
-                {% with results.count as total_results %}
-                    Найдено результатов: {{ total_results }} 
-                {% endwith %}
-            </h3>
-            {% if results.count %}
-                <h1 class="mb-3">Посты, содержащие запрос: "{{ query }}"</h1>
-            {% endif %} 
-            {% for article in results %}
-            <div class="pb-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h1>{{ article.title }}</h1>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">
-                            {{ article.description }}
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                        <a href="{{ article.get_absolute_url }}" class="btn btn-primary" role="button">Читать</a>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <p class="mb-0">{{ article.date_created }}</p>
-                            </div>
+    <div class="container">
+        <h1>Поиск</h1>
+        <form method="get" class="mb-3">
+            <p>
+                <label for="id_query">Запрос:</label>
+                <input type="text" name="query" required="" id="id_query">
+            </p>
+            <input type="submit" value="Искать">
+        </form>
+        {% if query %}
+        <h3>
+            {% with results.count as total_results %}
+                Найдено результатов: {{ total_results }} 
+            {% endwith %}
+        </h3>
+        {% if results.count %}
+            <h1 class="mb-3">Посты, содержащие запрос: "{{ query }}"</h1>
+        {% endif %} 
+        {% for article in results %}
+        <div class="pb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h1>{{ article.title }}</h1>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ article.description }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                                    <a href="{{ article.get_absolute_url }}" class="btn btn-primary" role="button">Читать</a>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <p class="mb-0">{{ article.date_created }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            {% empty %}
-            <p>Результатов по вашему запросу нет</p>
-                {% endfor %}
-            {% endif %}
         </div>
-        <div class="col-md-4 ">
-            <div class="position-sticky" style="top: 2rem">
-                <!-- Yandex.RTB R-A-7239096-1 -->
-                <div id="yandex_rtb_R-A-7239096-1"></div>
-                <script>
-                window.yaContextCb.push(()=>{
-                        Ya.Context.AdvManager.render({
-                		"blockId": "R-A-7239096-1",
-                		"renderTo": "yandex_rtb_R-A-7239096-1"
-                	})
-                })
-                </script>
-            </div>
-        </div>
+        {% empty %}
+        <p>Результатов по вашему запросу нет</p>
+            {% endfor %}
+        {% endif %}
     </div>
 </main>
 {% endblock %}
