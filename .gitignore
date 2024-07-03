@@ -4,3 +4,4 @@ data/
 **/secret_key.py
 **/*.sock
 **/data.json
+**/migrations/
