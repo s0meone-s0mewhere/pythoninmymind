@@ -5,3 +5,4 @@ data/
 **/*.sock
 **/data.json
 **/migrations/
+**/media/
